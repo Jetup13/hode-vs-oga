@@ -13,8 +13,8 @@ jobs:
         - {
             name: "Windows 64-bit",
             os: windows-latest,
-            extra_options: "-A x64 -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=.\3p\vcpkg\scripts\buildsystems\vcpkg.cmake",
-            deps_cmdline: ".\3p\vcpkg\bootstrap-vcpkg.bat",
+            extra_options: "-A x64 -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=${{ runner.workspace }}\\3p\\vcpkg\\scripts\\buildsystems\\vcpkg.cmake",
+            deps_cmdline: "${{ runner.workspace }}\\3p\\vcpkg\\bootstrap-vcpkg.bat",
             build_type: "Release"
           }
         - {
