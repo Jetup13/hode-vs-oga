@@ -51,11 +51,11 @@ jobs:
         cd build
         mkdir package
         if [[ "${{ runner.os }}" == 'Windows' ]]; then
-          cp ${{ matrix.config.build_type }}/hode.exe ${{ matrix.config.build_type }}/SDL2.dll ${{ matrix.config.build_type }}/getopt.dll ../hode.ini ../README.* package
+          cp ${{ matrix.config.build_type }}/hode.exe ${{ matrix.config.build_type }}/SDL2.dll ${{ matrix.config.build_type }}/getopt.dll ../hode.ini ../README.* package          
         elif [[ "${{ runner.os }}" == 'Linux' ]]; then
           cp hode ../hode.ini ../README.* package
         fi
-        zip --junk-paths "hode ${{ matrix.config.name }} ${{ matrix.config.build_type }}" ./package/*
+        tar -czf "hode ${{ matrix.config.name }} ${{ matrix.config.build_type }}.tar.gz" package
     - name: Upload Package
       uses: actions/upload-artifact@v1
       with:
@@ -89,6 +89,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ./hode ${{ matrix.config.name }} ${{ matrix.config.build_type }}.zip
+        asset_path: ./"hode ${{ matrix.config.name }} ${{ matrix.config.build_type }}.zip"
         asset_name: hode ${{ matrix.config.name }} ${{ matrix.config.build_type }}.zip
         asset_content_type: application/zip
