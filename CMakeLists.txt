@@ -5,18 +5,18 @@ cmake_minimum_required(VERSION 3.0)
 include(FindPkgConfig)
 
 set(CMAKE_CXX_FLAGS "-g -Wall -pedantic -MMD ${CMAKE_CXX_FLAGS}")
-
 if(VITA)
   set(ENV{PKG_CONFIG_PATH} "$ENV{VITASDK}/arm-vita-eabi/lib/pkgconfig")
 endif(VITA)
 
-# pkg_check_modules(SDL2 sdl2 REQUIRED)
-find_package(SDL2 CONFIG REQUIRED)
-find_path(DIRENT_INCLUDE_DIRS "dirent.h")
-if (MSVC)
+if(MSVC)
+  find_package(SDL2 CONFIG REQUIRED)
+  find_path(DIRENT_INCLUDE_DIRS "dirent.h")
   find_path(GETOPT_INCLUDE_DIRS "getopt.h")
   find_library(GETOPT_LIBRARY getopt)
-endif()
+else(MSVC)
+  pkg_check_modules(SDL2 sdl2 REQUIRED)
+endif(MSVC)
 
 include_directories(
   ${SDL2_INCLUDE_DIRS}
@@ -28,16 +28,14 @@ add_executable(${CMAKE_PROJECT_NAME}
   ${SRC}
 )
 
-# target_link_libraries(${CMAKE_PROJECT_NAME} ${SDL2_STATIC_LIBRARIES})
-if (MSVC)
+if(MSVC)
   target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE SDL2::SDL2 SDL2::SDL2main)
+  target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${DIRENT_INCLUDE_DIRS})
+  target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${GETOPT_INCLUDE_DIRS})
   target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ${GETOPT_LIBRARY})
-else()
-  target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE SDL2)
-endif()
-
-target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${DIRENT_INCLUDE_DIRS})
-target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${GETOPT_INCLUDE_DIRS})
+else(MSVC)
+  target_link_libraries(${CMAKE_PROJECT_NAME} ${SDL2_STATIC_LIBRARIES})
+endif(MSVC)
 
 if(NSWITCH)
   add_definitions(-D__SWITCH__)
