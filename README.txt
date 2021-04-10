@@ -12,7 +12,7 @@ vcpkg install getopt:x64-windows
 vcpkg install dirent:x64-windows
 
 Clone repo with submodules init'd:
-git clone --recurse-submodules https://github.com/beefviper/hode-vs
+git clone --recurse-submodules https://github.com/CommonLoon102/hode-vs
 
 Suggested build steps:
 cd hode-vs
