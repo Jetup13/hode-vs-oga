@@ -50,9 +50,9 @@ jobs:
         cd build
         mkdir package
         if [[ "${{ runner.os }}" == 'Windows' ]]; then
-          cp ${{ matrix.config.build_type }}/hode.exe package
+          cp ${{ matrix.config.build_type }}/hode.exe ${{ matrix.config.build_type }}/SDL2.dll ${{ matrix.config.build_type }}/getopt.dll hode.ini package
         elif [[ "${{ runner.os }}" == 'Linux' ]]; then
-          cp hode package
+          cp hode hode.ini package
         fi
     - name: Upload Package
       uses: actions/upload-artifact@v1
