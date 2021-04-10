@@ -13,8 +13,10 @@ endif(VITA)
 # pkg_check_modules(SDL2 sdl2 REQUIRED)
 find_package(SDL2 CONFIG REQUIRED)
 find_path(DIRENT_INCLUDE_DIRS "dirent.h")
-find_path(GETOPT_INCLUDE_DIRS "getopt.h")
-find_library(GETOPT_LIBRARY getopt)
+if (MSVC)
+  find_path(GETOPT_INCLUDE_DIRS "getopt.h")
+  find_library(GETOPT_LIBRARY getopt)
+endif()
 
 include_directories(
   ${SDL2_INCLUDE_DIRS}
@@ -29,11 +31,10 @@ add_executable(${CMAKE_PROJECT_NAME}
 # target_link_libraries(${CMAKE_PROJECT_NAME} ${SDL2_STATIC_LIBRARIES})
 if (MSVC)
   target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE SDL2::SDL2 SDL2::SDL2main)
+  target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ${GETOPT_LIBRARY})
 else()
   target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE SDL2)
 endif()
-
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ${GETOPT_LIBRARY})
 
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${DIRENT_INCLUDE_DIRS})
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${GETOPT_INCLUDE_DIRS})
