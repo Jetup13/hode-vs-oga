@@ -13,7 +13,8 @@ jobs:
         - {
             name: "Windows 64-bit",
             os: windows-latest,
-            extra_options: "-A x64",
+            extra_options: "-A x64 -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=${{ runner.workspace }}\3p\vcpkg\scripts\buildsystems\vcpkg.cmake",
+            deps_cmdline: "${{ runner.workspace }}\3p\vcpkg\bootstrap-vcpkg.bat",
             build_type: "Release"
           }
         - {
@@ -29,10 +30,10 @@ jobs:
     - name: Install Dependencies
       shell: bash
       run: |
+        git submodule update --init
         if [[ ! -z "${{ matrix.config.deps_cmdline }}" ]]; then
           eval ${{ matrix.config.deps_cmdline }}
-        fi
-        git submodule update --init
+        fi       
         mkdir build
     - name: Configure
       shell: bash
