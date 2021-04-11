@@ -32,7 +32,7 @@ Windows
 git clone --recurse-submodules https://github.com/CommonLoon102/hode-vs
 cd hode-vs
 3p\vcpkg\bootstrap-vcpkg.bat
-cmake -B build -DCMAKE_BUILD_TYPE=Release -A x64 -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=%CD%\3p\vcpkg\scripts\buildsystems\vcpkg.cmake .
+cmake -B build -DCMAKE_BUILD_TYPE=Release -A x64 -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE=%CD%\3p\vcpkg\scripts\buildsystems\vcpkg.cmake
 cmake --build build --config Release --parallel 3
 ```
 
