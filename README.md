@@ -50,7 +50,7 @@ cd hode-vs
 3. Wait until CMake installs the packages via vcpkg
 4. Next to the play button, select startup item: `hode.exe`
 5. Click play
-6. Copy the needed files described in the `Datafiles` section to the debug folder
+6. Copy the needed files described in the `Datafiles` section into the debug folder
 
 Running
 =======
