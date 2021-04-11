@@ -52,10 +52,10 @@ jobs:
         mkdir package
         if [[ "${{ runner.os }}" == 'Windows' ]]; then
           cp ${{ matrix.config.build_type }}/hode.exe ${{ matrix.config.build_type }}/SDL2.dll ${{ matrix.config.build_type }}/getopt.dll ../hode.ini ../README.* package
+          tar -czf hode-win-x64.tar.gz package
         elif [[ "${{ runner.os }}" == 'Linux' ]]; then
           cp hode ../hode.ini ../README.* package
         fi
-        tar -czf hode-win-x64.tar.gz package
     - name: Upload Package
       uses: actions/upload-artifact@v1
       with:
