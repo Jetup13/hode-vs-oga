@@ -33,8 +33,6 @@ sudo apt update
 sudo apt install libsdl2-dev git make cmake gcc g++ -y
 git clone https://github.com/CommonLoon102/hode-vs
 cd hode-vs
-git submodule update --init ./3p/inih
-git submodule update --init ./3p/libxbr-standalone
 cmake -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release --parallel 3
 ```
@@ -46,8 +44,6 @@ brew upgrade
 brew install sdl2
 git clone https://github.com/CommonLoon102/hode-vs
 cd hode-vs
-git submodule update --init ./3p/inih
-git submodule update --init ./3p/libxbr-standalone
 cmake -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release --parallel 3
 ```
