@@ -88,6 +88,7 @@ void Level_rock::postScreenUpdate_rock_screen0() {
 		++_screenCounterTable[0];
 		if (_screenCounterTable[0] > 25) {
 			_res->_screensState[0].s0 = 1;
+			_g->updateBackgroundPsx(1);
 		}
 		if (_screenCounterTable[0] == 2) {
 			_g->setShakeScreen(3, 12);
@@ -129,6 +130,7 @@ void Level_rock::postScreenUpdate_rock_screen4() {
 			_g->setupScreenMask(4);
 		} else if (_screenCounterTable[4] > 46) {
 			_res->_screensState[4].s0 = 1;
+			_g->updateBackgroundPsx(1);
 		}
 		if (_screenCounterTable[4] == 31) {
 			_g->setShakeScreen(2, 12);
@@ -168,6 +170,7 @@ void Level_rock::postScreenUpdate_rock_screen9() {
 					_checkpoint = 5;
 				}
 				_res->_screensState[9].s0 = 1;
+				_g->updateBackgroundPsx(1);
 				_g->setAndySprite(2);
 				_andyObject->xPos = 105;
 				_andyObject->yPos = 52;
