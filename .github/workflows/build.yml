@@ -49,8 +49,6 @@ jobs:
       - name: Install Dependencies
         shell: bash
         run: |
-          git submodule update --init ./3p/inih
-          git submodule update --init ./3p/libxbr-standalone
           if [[ ! -z "${{ matrix.config.deps_cmdline }}" ]]; then
             eval ${{ matrix.config.deps_cmdline }}
           fi
