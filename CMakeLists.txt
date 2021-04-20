@@ -31,7 +31,7 @@ include_directories(
   ${SDL2_INCLUDE_DIRS}
 )
 
-file(GLOB SRC *.cpp 3p/inih/ini.c 3p/libxbr-standalone/xbr.c)
+file(GLOB SRC *.cpp)
 list(FILTER SRC EXCLUDE REGEX ".*android.cpp|system_psp.cpp|system_wii.cpp")
 add_executable(${CMAKE_PROJECT_NAME}
   ${SRC}
