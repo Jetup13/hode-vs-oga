@@ -272,7 +272,6 @@ int main(int argc, char *argv[]) {
 	setupAudio(g);
 	if (isPsx) {
 		g->_video->initPsx();
-		_runMenu = false;
 	}
 	if (_displayLoadingScreen) {
 		g->displayLoadingScreen();
