@@ -80,5 +80,19 @@ if(VITA)
     FILE 3p/res/bg.png sce_sys/livearea/contents/bg.png
     FILE 3p/res/startup.png sce_sys/livearea/contents/startup.png
     FILE 3p/res/template.xml sce_sys/livearea/contents/template.xml
-)
+  )
+
+  target_link_libraries(${CMAKE_PROJECT_NAME}
+    SceGxm_stub
+    SceDisplay_stub
+    SceCtrl_stub
+    SceAppMgr_stub
+    SceAudio_stub
+    SceSysmodule_stub
+    SceIofilemgr_stub
+    SceCommonDialog_stub
+    SceTouch_stub
+    SceHid_stub
+    SceMotion_stub
+  )
 endif(VITA)
