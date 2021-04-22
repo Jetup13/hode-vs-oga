@@ -2,8 +2,6 @@ project(hode)
 
 cmake_minimum_required(VERSION 3.0)
 
-include(FindPkgConfig)
-
 if(NOT MSVC)
   set(CMAKE_CXX_FLAGS "-pedantic -MMD ${CMAKE_CXX_FLAGS}")
   if(CMAKE_BUILD_TYPE MATCHES "Deb")
@@ -12,9 +10,12 @@ if(NOT MSVC)
 endif()
 
 set(CMAKE_CXX_FLAGS "-Wall ${CMAKE_CXX_FLAGS}")
+
 if(VITA)
   set(ENV{PKG_CONFIG_PATH} "$ENV{VITASDK}/arm-vita-eabi/lib/pkgconfig")
 endif(VITA)
+
+include(FindPkgConfig)
 
 if(MSVC)
   find_package(SDL2 CONFIG REQUIRED)
@@ -62,7 +63,15 @@ if(NSWITCH)
 endif(NSWITCH)
 
 if(VITA)
-  include("${VITASDK}/share/vita.cmake" REQUIRED)
+  add_definitions(-D__vita__)
+  if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+    if(DEFINED ENV{VITASDK})
+      set(CMAKE_TOOLCHAIN_FILE "$ENV{VITASDK}/share/vita.toolchain.cmake" CACHE PATH "toolchain file")
+    else()
+      message(FATAL_ERROR "Please define VITASDK to point to your SDK path!")
+    endif()
+  endif()
+  include("$ENV{VITASDK}/share/vita.cmake" REQUIRED)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -fpermissive")
   vita_create_self(eboot.bin ${CMAKE_PROJECT_NAME} UNSAFE)
   vita_create_vpk(${CMAKE_PROJECT_NAME}.vpk "HODEVITA1" eboot.bin
