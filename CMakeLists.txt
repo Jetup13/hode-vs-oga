@@ -11,10 +11,6 @@ endif()
 
 set(CMAKE_CXX_FLAGS "-Wall ${CMAKE_CXX_FLAGS}")
 
-if(VITA)
-  set(ENV{PKG_CONFIG_PATH} "$ENV{VITASDK}/arm-vita-eabi/lib/pkgconfig")
-endif(VITA)
-
 include(FindPkgConfig)
 
 if(MSVC)
