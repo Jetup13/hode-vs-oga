@@ -71,9 +71,9 @@ jobs:
           cd ${{ env.build_dir }}
           mkdir ${{ env.package_dir }}
           if [[ "${{ runner.os }}" == 'Windows' ]]; then
-            cp ${{ matrix.config.build_type }}/${{ env.app_name }}.exe ${{ matrix.config.build_type }}/SDL2.dll ${{ matrix.config.build_type }}/getopt.dll ../${{ env.app_name }}.ini ${{ env.package_dir }}
+            cp ${{ matrix.config.build_type }}/${{ env.app_name }}.exe ${{ matrix.config.build_type }}/SDL2.dll ${{ matrix.config.build_type }}/getopt.dll ../${{ env.app_name }}.ini ../icon.bmp ${{ env.package_dir }}
           else
-            cp ${{ env.app_name }} ../${{ env.app_name }}.ini ${{ env.package_dir }}
+            cp ${{ env.app_name }} ../${{ env.app_name }}.ini ../icon.bmp ${{ env.package_dir }}
           fi
 
       - name: Zip Package 
