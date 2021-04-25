@@ -6838,6 +6838,7 @@ void Game::mstOp67_addMonster(Task *currentTask, int x1, int x2, int y1, int y2,
 }
 
 void Game::mstOp68_addMonsterGroup(Task *t, const uint8_t *p, int a, int b, int c, int d) {
+	return;
 	const MstBehaviorIndex *m42 = &_res->_mstBehaviorIndexData[d];
 	struct {
 		int m42Index;

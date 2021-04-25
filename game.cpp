@@ -3298,7 +3298,7 @@ int Game::lvlObjectType7Callback(LvlObject *ptr) {
 		dat->yPosObject = ptr->posTable[7].y + ptr->yPos;
 		ptr->xPos += dat->dxPos;
 		ptr->yPos += dat->dyPos;
-		if ((_cheats & kCheatSpectreFireballNoHit) == 0 && !_hideAndyObjectFlag && ptr->screenNum == _andyObject->screenNum && (_andyObject->flags0 & 0x1F) != 0xB && clipLvlObjectsBoundingBox(_andyObject, ptr, 68) && (_mstFlags & 0x80000000) == 0) {
+		if (0 && (_cheats & kCheatSpectreFireballNoHit) == 0 && !_hideAndyObjectFlag && ptr->screenNum == _andyObject->screenNum && (_andyObject->flags0 & 0x1F) != 0xB && clipLvlObjectsBoundingBox(_andyObject, ptr, 68) && (_mstFlags & 0x80000000) == 0) {
 			dat->unk3 = 0x80;
 			dat->xPosShoot = _clipBoxOffsetX;
 			dat->yPosShoot = _clipBoxOffsetY;
