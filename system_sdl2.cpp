@@ -555,28 +555,28 @@ void System_SDL2::processEvents() {
 			if (_joystick) {
 				const bool pressed = (ev.jbutton.state == SDL_PRESSED);
 				switch (ev.jbutton.button) {
-				case 0:
+				case 30:
 					if (pressed) {
 						pad.mask |= SYS_INP_RUN;
 					} else {
 						pad.mask &= ~SYS_INP_RUN;
 					}
 					break;
-				case 1:
+				case 31:
 					if (pressed) {
 						pad.mask |= SYS_INP_JUMP;
 					} else {
 						pad.mask &= ~SYS_INP_JUMP;
 					}
 					break;
-				case 2:
+				case 32:
 					if (pressed) {
 						pad.mask |= SYS_INP_SHOOT;
 					} else {
 						pad.mask &= ~SYS_INP_SHOOT;
 					}
 					break;
-				case 3:
+				case 33:
 					if (pressed) {
 						pad.mask |= SYS_INP_SHOOT | SYS_INP_RUN;
 					} else {
@@ -699,8 +699,17 @@ void System_SDL2::processEvents() {
 						pad.mask &= ~(SYS_INP_SHOOT | SYS_INP_RUN);
 					}
 					break;
-				case SDL_CONTROLLER_BUTTON_BACK:
+				case SDL_CONTROLLER_BUTTON_LEFTSHOULDER:
 					inp.skip = pressed;
+					break;
+				case SDL_CONTROLLER_BUTTON_RIGHTSHOULDER:
+					inp.skip = pressed;
+					break;
+				case SDL_CONTROLLER_BUTTON_GUIDE:
+					inp.quit = pressed;
+					break;
+				case SDL_CONTROLLER_BUTTON_BACK:
+					inp.quit = pressed;
 					break;
 				case SDL_CONTROLLER_BUTTON_START:
 					inp.exit = pressed;
